@@ -1,0 +1,176 @@
+{
+    "meta": {
+        "title": "Sergio Forés · Front-End & Rapid Prototyping",
+        "description": "Desarrollador Front-End y especialista en prototipado rápido con más de 20 años de experiencia"
+    },
+    "hero": {
+        "name": "Sergio Forés",
+        "title": "Desarrollador Front-End & Especialista en Prototipado Rápido",
+        "tagline": "Transformo ideas en MVPs funcionales en tiempo récord",
+        "backgroundImage": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80",
+        "cta": [
+            {
+                "text": "Ver mis proyectos",
+                "url": "#proyectos",
+                "type": "primary"
+            },
+            {
+                "text": "Descargar CV",
+                "url": "link_cv.pdf",
+                "type": "secondary"
+            }
+        ]
+    },
+    "about": {
+        "title": "👨💻 Sobre Mí",
+        "intro": "¡Hola! Soy Sergio, desarrollador front-end con +20 años de experiencia especializado en prototipado rápido y creación de MVPs.",
+        "description": "Combino diseño UI/UX con desarrollo ágil para materializar conceptos en productos funcionales, potenciado por programación asistida con IA.",
+        "sections": [
+            {
+                "title": "🚀 Mi enfoque",
+                "items": [
+                    "Prototipos interactivos que validan ideas en días (no semanas)",
+                    "Integración de IA en flujos de desarrollo para acelerar entregas"
+                ]
+            },
+            {
+                "title": "💼 Experiencia clave",
+                "items": [
+                    "Colaboración con equipos de diseño en Tinsa",
+                    "Desarrollo freelance de MVPs para clientes en sectores inmobiliario y fintech"
+                ]
+            }
+        ]
+    },
+    "skills": {
+        "title": "🛠️ Habilidades Técnicas",
+        "categories": [
+            {
+                "name": "Especialización",
+                "skills": [
+                    {
+                        "name": "Prototipado Rápido",
+                        "level": "expert"
+                    },
+                    {
+                        "name": "MVP Development",
+                        "level": "expert"
+                    },
+                    {
+                        "name": "IA Asistida",
+                        "level": "expert"
+                    },
+                    {
+                        "name": "UI Design",
+                        "level": "expert"
+                    }
+                ]
+            },
+            {
+                "name": "Stack técnico",
+                "skills": [
+                    {
+                        "name": "HTML5",
+                        "level": "expert"
+                    },
+                    {
+                        "name": "Sass",
+                        "level": "expert"
+                    },
+                    {
+                        "name": "Figma",
+                        "level": "expert"
+                    }
+                ]
+            }
+        ]
+    },
+    "projects": {
+        "title": "📂 Proyectos Destacados",
+        "items": [
+            {
+                "title": "Sistema de Diseño para Tinsa",
+                "description": "Biblioteca de componentes reutilizables para productos digitales.",
+                "image": "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&q=80",
+                "stats": {
+                    "value": "40%",
+                    "label": "Reducción tiempo desarrollo"
+                },
+                "technologies": ["Sass", "HTML", "JavaScript", "Figma"]
+            },
+            {
+                "title": "Plataforma Inmobiliaria MVP",
+                "description": "MVP funcional en 3 semanas para ronda de inversión.",
+                "image": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80",
+                "stats": {
+                    "value": "€500k",
+                    "label": "Financiación obtenida"
+                },
+                "technologies": ["HTML", "Sass", "GPT-4", "Three.js"]
+            }
+        ]
+    },
+    "experience": {
+        "title": "💼 Experiencia Laboral",
+        "items": [
+            {
+                "role": "Desarrollador Front-End & Prototyper Freelance",
+                "period": "2004–Actualidad",
+                "achievements": [
+                    "MVP de app de inversiones con dashboard interactivo (lanzado en 18 días)",
+                    "Sistema de gráficos personalizado con Sass + Canvas"
+                ]
+            },
+            {
+                "role": "Tinsa (Equipo de Diseño)",
+                "period": "2018–2020",
+                "achievements": [
+                    "Desarrollo de herramientas internas para acelerar workflows de diseño",
+                    "Reducción de 70% en discrepancias entre diseño e implementación"
+                ]
+            }
+        ]
+    },
+    "contact": {
+        "title": "📩 Contacto",
+        "intro": "¿Listo para convertir tu idea en un prototipo funcional?",
+        "form": {
+            "action": "https://formspree.io/f/xvojnqky",
+            "fields": [
+                {
+                    "type": "text",
+                    "name": "name",
+                    "placeholder": "Tu nombre",
+                    "required": true
+                },
+                {
+                    "type": "email",
+                    "name": "email",
+                    "placeholder": "tu@email.com",
+                    "required": true
+                },
+                {
+                    "type": "textarea",
+                    "name": "message",
+                    "placeholder": "Describe tu proyecto...",
+                    "required": true
+                }
+            ]
+        },
+        "social": [
+            {
+                "platform": "LinkedIn",
+                "url": "link_linkedin"
+            },
+            {
+                "platform": "GitHub",
+                "url": "link_github"
+            },
+            {
+                "platform": "Email",
+                "url": "mailto:contacto@sergiofores.dev",
+                "text": "contacto@sergiofores.dev"
+            }
+        ]
+    }
+}
