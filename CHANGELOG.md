@@ -4,6 +4,31 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+- Favicon SVG personalizado
+- Protección de email contra bots
+- Botón "back to top" con animación suave
+
+### Changed
+- Mejorado el layout de skills-grid a dos filas
+- Timeline actualizado a dos columnas
+- Contact options reorganizado en dos filas
+- Alineación del contenido "about" a la izquierda
+- Centrado de títulos y botones
+- Ajustado el diseño de badges con fondo gris claro
+
+### Fixed
+- Eliminado el efecto parallax para mejor rendimiento
+- Corregidos errores de JavaScript
+- Mejorada la accesibilidad del botón de contacto
+- Optimizado el rendimiento general
+
+### Security
+- Implementada protección del email contra bots
+- Mejorada la seguridad general del contacto
+
 ## [1.0.0] - 2025-01-26
 
 ### Añadido
