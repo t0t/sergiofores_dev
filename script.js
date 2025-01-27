@@ -24,7 +24,7 @@ class PortfolioContent {
                 },
                 "hero": {
                     "name": "Sergio Forés",
-                    "title": "Front-End Developer & Rapid Prototyping Specialist",
+                    "title": "Holistic Developer & Rapid Prototyping Specialist",
                     "tagline": "Turning ideas into functional MVPs at record speed",
                     "backgroundImage": "./images/bg2.jpg",
                     "cta": [
@@ -363,59 +363,71 @@ class PortfolioContent {
             });
         });
 
-        // Parallax effect for hero section
-        const hero = document.querySelector('.hero');
+        // Back to top functionality
+        const backToTop = document.querySelector('.back-to-top');
+        const showBackToTop = () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            backToTop.classList.toggle('visible', scrollTop > window.innerHeight / 2);
+        };
+
         window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            requestAnimationFrame(showBackToTop);
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
 
         // Form submission handling
         const form = document.querySelector('.contact-form');
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const submitButton = form.querySelector('button[type="submit"]');
-            const originalText = submitButton.textContent;
-            
-            try {
-                submitButton.textContent = 'Enviando...';
-                const formData = new FormData(form);
-                const response = await fetch(form.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
+        if (form) {
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const submitButton = form.querySelector('button[type="submit"]');
+                const originalText = submitButton.textContent;
                 
-                if (response.ok) {
-                    submitButton.textContent = '¡Mensaje enviado!';
-                    form.reset();
+                try {
+                    submitButton.textContent = 'Enviando...';
+                    const formData = new FormData(form);
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+                    
+                    if (response.ok) {
+                        submitButton.textContent = '¡Mensaje enviado!';
+                        form.reset();
+                        setTimeout(() => {
+                            submitButton.textContent = originalText;
+                        }, 3000);
+                    } else {
+                        throw new Error('Error en el envío');
+                    }
+                } catch (error) {
+                    submitButton.textContent = 'Error - Intenta de nuevo';
                     setTimeout(() => {
                         submitButton.textContent = originalText;
                     }, 3000);
-                } else {
-                    throw new Error('Error en el envío');
                 }
-            } catch (error) {
-                submitButton.textContent = 'Error - Intenta de nuevo';
-                setTimeout(() => {
-                    submitButton.textContent = originalText;
-                }, 3000);
-            }
-        });
+            });
+        }
 
         // Intersection Observer for fade-in animations
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            rootMargin: '0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
@@ -431,75 +443,32 @@ class PortfolioContent {
 document.addEventListener('DOMContentLoaded', () => {
     new PortfolioContent();
 
-    // Efecto Parallax
-    const heroBackground = document.querySelector('.hero-background');
-    let ticking = false;
+    // Add dynamic cursor effect
+    const cursor = document.createElement('div');
+    cursor.classList.add('cursor');
+    document.body.appendChild(cursor);
 
-    window.addEventListener('scroll', () => {
-        if (!ticking) {
-            window.requestAnimationFrame(() => {
-                const scrolled = window.pageYOffset;
-                if (window.innerWidth > 768) { // Solo en desktop
-                    heroBackground.style.transform = `translateY(${scrolled * 0.5}px)`;
-                    heroBackground.style.opacity = Math.max(0, 1 - scrolled / 700);
-                }
-                ticking = false;
-            });
-            ticking = true;
-        }
+    let mouseX = 0;
+    let mouseY = 0;
+    let cursorX = 0;
+    let cursorY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
     });
 
-    // Efecto de aparición suave al scroll
-    const sections = document.querySelectorAll('section');
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
+    // Smooth cursor animation
+    function animate() {
+        const dx = mouseX - cursorX;
+        const dy = mouseY - cursorY;
+        
+        cursorX += dx * 0.1;
+        cursorY += dy * 0.1;
+        
+        cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+        requestAnimationFrame(animate);
+    }
 
-    const sectionObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    sections.forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(20px)';
-        section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-        sectionObserver.observe(section);
-    });
+    animate();
 });
-
-// Add dynamic cursor effect
-const cursor = document.createElement('div');
-cursor.classList.add('cursor');
-document.body.appendChild(cursor);
-
-let mouseX = 0;
-let mouseY = 0;
-let cursorX = 0;
-let cursorY = 0;
-
-document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-});
-
-// Smooth cursor animation
-function animate() {
-    const dx = mouseX - cursorX;
-    const dy = mouseY - cursorY;
-    
-    cursorX += dx * 0.1;
-    cursorY += dy * 0.1;
-    
-    cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
-    requestAnimationFrame(animate);
-}
-
-animate();
