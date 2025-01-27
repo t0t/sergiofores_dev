@@ -9,6 +9,7 @@ class PortfolioContent {
             await this.loadData();
             this.renderContent();
             this.initializeInteractions();
+            this.protectEmail();
         } catch (error) {
             console.error('Error initializing portfolio:', error);
         }
@@ -149,7 +150,7 @@ class PortfolioContent {
                 "contact": {
                     "title": "Contact",
                     "intro": "Ready to turn your idea into a functional prototype?",
-                    "email": "contacto@sergiofores.dev",
+                    "email": "sergiofores@gmail.com",
                     "form": {
                         "action": "#",
                         "fields": [
@@ -363,23 +364,22 @@ class PortfolioContent {
             });
         });
 
-        // Back to top functionality
-        const backToTop = document.querySelector('.back-to-top');
-        const showBackToTop = () => {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            backToTop.classList.toggle('visible', scrollTop > window.innerHeight / 2);
-        };
-
-        window.addEventListener('scroll', () => {
-            requestAnimationFrame(showBackToTop);
-        });
-
-        backToTop.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+        // Email protection
+        const contactButton = document.getElementById('contact-button');
+        if (contactButton) {
+            contactButton.addEventListener('click', () => {
+                const parts = ['sergiofores', '@', 'gmail.com'];
+                const email = parts.join('');
+                window.location.href = 'mailto:' + email + '?subject=Contact%20from%20Portfolio';
+                
+                // Feedback visual
+                const originalText = contactButton.innerHTML;
+                contactButton.innerHTML = '<i class="ri-mail-line"></i> Opening email client...';
+                setTimeout(() => {
+                    contactButton.innerHTML = originalText;
+                }, 2000);
             });
-        });
+        }
 
         // Form submission handling
         const form = document.querySelector('.contact-form');
@@ -418,6 +418,24 @@ class PortfolioContent {
             });
         }
 
+        // Back to top functionality
+        const backToTop = document.querySelector('.back-to-top');
+        const showBackToTop = () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            backToTop.classList.toggle('visible', scrollTop > window.innerHeight / 2);
+        };
+
+        window.addEventListener('scroll', () => {
+            requestAnimationFrame(showBackToTop);
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
         // Intersection Observer for fade-in animations
         const observerOptions = {
             threshold: 0.1,
@@ -436,6 +454,32 @@ class PortfolioContent {
             section.classList.add('fade-in');
             observer.observe(section);
         });
+    }
+
+    protectEmail() {
+        const emailElement = document.querySelector('[data-email]');
+        if (emailElement) {
+            const email = 'sergiofores@gmail.com';
+            const obfuscatedEmail = obfuscate(email);
+            emailElement.innerHTML = obfuscatedEmail;
+            
+            // Añadir funcionalidad de clic para copiar
+            emailElement.style.cursor = 'pointer';
+            emailElement.title = 'Click to copy email';
+            
+            emailElement.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(email);
+                    const originalText = emailElement.textContent;
+                    emailElement.textContent = 'Email copied!';
+                    setTimeout(() => {
+                        emailElement.innerHTML = obfuscatedEmail;
+                    }, 2000);
+                } catch (err) {
+                    console.error('Failed to copy email:', err);
+                }
+            });
+        }
     }
 }
 

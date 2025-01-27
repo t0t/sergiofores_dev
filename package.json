@@ -9,5 +9,8 @@
   },
   "devDependencies": {
     "vite": "^5.0.0"
+  },
+  "dependencies": {
+    "email-obfuscate": "^0.0.6"
   }
 }
